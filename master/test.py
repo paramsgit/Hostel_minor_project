@@ -31,7 +31,7 @@ def check_image(image):
 
 
 def test(image_name, model_dir, device_id):
-    
+
     model_test = AntiSpoofPredict(device_id)
     image_cropper = CropImage()
     # image = cv2.imread(image_name)

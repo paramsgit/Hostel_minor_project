@@ -19,7 +19,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    
+
     checking("hello checking")
     # data = request.get_json()
     # y = json.loads(json.dumps(data))
@@ -38,14 +38,14 @@ def thisone():
     # url2 = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Mark_Kassen%2C_Tony_C%C3%A1rdenas_and_Chris_Evans_%28cropped%29.jpg/330px-Mark_Kassen%2C_Tony_C%C3%A1rdenas_and_Chris_Evans_%28cropped%29.jpg"
     img1 = urllib.request.urlopen(url1).read()
     img2 = urllib.request.urlopen(url2).read()
-    
+
     # Convert the images to numpy arrays
     npimg1 = np.frombuffer(img1, np.uint8)
     npimg2 = np.frombuffer(img2, np.uint8)
-   
+
     img1 = cv2.imdecode(npimg1, cv2.IMREAD_COLOR)
     img2 = cv2.imdecode(npimg2, cv2.IMREAD_COLOR)
-    
+
     gspoof = test(img1, "./resources/anti_spoof_models", 0)
     print(gspoof)
     # Find the face encodings in each image
@@ -66,10 +66,10 @@ def thisone():
         result_number = face_recognition.face_distance([encoding1], encoding2)
         print((1-result_number)*100)
         if results[0] == True:
-            
+
             return jsonify({"result":True,"message":"Success, Face Matched","spoof":gspoof})
         else:
-            
+
             return jsonify({"result":False,"message":"Face are not matched"})
 
         return jsonify({"result":False})
