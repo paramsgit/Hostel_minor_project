@@ -12,7 +12,14 @@ export const Attendance = () => {
     useEffect(() => {
     console.log("useeffect")
     if(localStorage.getItem('token')){
-      if(localStorage.getItem('room_no')){}
+      if(localStorage.getItem('room_no')){
+        let newd=new Date();
+        let dto=""
+        dto=dto+newd;
+        dto=dto.slice(4,15)
+        setdatetoday(dto)
+
+      }
       else{
         navigate("/home")
       }
@@ -25,6 +32,7 @@ export const Attendance = () => {
   const [latitude, setlatitude] =useState(0);
   const [longitude, setlongitude] =useState(0);
   const [rmessage, setrmessage] =useState("Start camera and capture");
+  const [datetoday,setdatetoday]=useState();
 
     const stopcvfunc=async(e)=>{
       console.log("stopcvfunxton started")
@@ -302,7 +310,7 @@ const myFile = new File([jpegBlob], 'myFile.jpg', {
 </div>
 <div className="flex items-center justify-end max-w-full px-3 md:w-1/2 md:flex-none">
 <i className="mr-2 far fa-calendar-alt" aria-hidden="true"></i>
-<small>Upto 15 April 2023</small>
+<small>Upto {datetoday}</small>
 </div>
 </div>
 </div>
