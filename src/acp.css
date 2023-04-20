@@ -232,12 +232,14 @@
  }
  .att{
   display: flex;
+  justify-content: space-evenly;
  }
  .attleft{
   width: 50%;
  }
  .attright{
   width: 50%;
+  max-width: 500px;
  }
  .attul{
   /* max-height: 500px; */

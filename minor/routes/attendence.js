@@ -151,10 +151,10 @@ router.post('/attend', fetchuser, attendance_upload.single("file"),async (req,re
 router.get('/attend',fetchuser,async (req,res)=>{
     try {
         const attenhist = await Attend.find({ user: req.user })
-        res.json(attenhist)
+        res.json({attenhist:attenhist,response:true,message:"Attendance History"})
     } catch (error) {
         console.log(error)
-        res.status(500).json({ errors:'server error'})
+        res.status(500).json({ message:'server error',response:false})
     }
 })
 

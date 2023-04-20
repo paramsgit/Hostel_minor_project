@@ -19,6 +19,8 @@ export const Attendance = () => {
         dto=dto.slice(4,15)
         setdatetoday(dto)
 
+        getAttendance()
+
       }
       else{
         navigate("/home")
@@ -27,12 +29,39 @@ export const Attendance = () => {
     else{
      navigate("/signin")
     }
-  });
+  },[]);
   const [cwidth, setcwidth] =useState(400);
   const [latitude, setlatitude] =useState(0);
   const [longitude, setlongitude] =useState(0);
   const [rmessage, setrmessage] =useState("Start camera and capture");
   const [datetoday,setdatetoday]=useState();
+  let attend_data=[]
+  const [attendli,setattendli]=useState()
+
+   const getAttendance=async()=>{
+    const response=await fetch("http://localhost:5000/api/a/attend",{
+      method:'get',
+      headers:{
+          'Content-Type':'application/json',
+          'auth-token':localStorage.getItem('token')
+      },
+      
+  });
+  let json=await response.json();
+ console.log(json,json.attenhist.length)
+ if(json.response){
+  let atten_length=json.attenhist.length
+  if(atten_length){
+  
+    for(let i=0;i<atten_length;i++){
+
+    }
+  }
+ }
+ else{}
+
+
+   }
 
     const stopcvfunc=async(e)=>{
       console.log("stopcvfunxton started")
@@ -233,6 +262,7 @@ const myFile = new File([jpegBlob], 'myFile.jpg', {
     return intersectCount % 2 == 1;
   }
 
+
  
 
   return (
@@ -316,13 +346,13 @@ const myFile = new File([jpegBlob], 'myFile.jpg', {
 </div>
 <div className="flex-auto p-4 pt-6">
 
-<ul className="flex flex-col pl-0 mb-0 rounded-lg attul">
+{/* <ul className="flex flex-col pl-0 mb-0 rounded-lg attul">
 <li className="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-t-inherit text-inherit rounded-xl" style={{justifyContent:"center"}}>
   <div className="flex" style={{justifyContent:"center"}}>
   No record found</div>
 </li>
-</ul>
-{/* <ul className="flex flex-col pl-0 mb-0 rounded-lg attul">
+</ul> */}
+<ul className="flex flex-col pl-0 mb-0 rounded-lg attul">
 <li className="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-t-inherit text-inherit rounded-xl">
 <div className="flex items-center">
 <button className="leading-pro ease-soft-in text-xs bg-150 w-6.35 h-6.35 p-1.2 rounded-3.5xl tracking-tight-soft bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-lime-500 border-transparent bg-transparent text-center align-middle font-bold uppercase text-lime-500 transition-all hover:opacity-75" fdprocessedid="865fo">
@@ -335,196 +365,24 @@ const myFile = new File([jpegBlob], 'myFile.jpg', {
 <span className="leading-tight text-xs">26 March 2020, at 13:45 PM</span>
 </div>
 </div>
-<div className="flex flex-col items-center justify-center">
-<p className="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl from-green-600 to-lime-400 text-sm bg-clip-text">+ $ 750</p>
-</div>
+
 </li>
 <li className="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-t-inherit text-inherit rounded-xl">
 <div className="flex items-center">
 <button className="leading-pro ease-soft-in text-xs bg-150 w-6.35 h-6.35 p-1.2 rounded-3.5xl tracking-tight-soft bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-lime-500 border-transparent bg-transparent text-center align-middle font-bold uppercase text-red-500 transition-all hover:opacity-75" fdprocessedid="865fo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-exclamation-lg" viewBox="0 0 16 16">
   <path d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0L7.005 3.1ZM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"/>
 </svg></button>
-<div className="flex flex-col">
+<div className="flex flex-col" style={{width:"100%",justifyContent:"space-between"}}>
 <h6 className="mb-1 leading-normal text-sm text-slate-700">Missed</h6>
 <span className="leading-tight text-xs">26 March 2020, at 13:45 PM</span>
 </div>
 </div>
-<div className="flex flex-col items-center justify-center">
-<p className="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl from-green-600 to-lime-400 text-sm bg-clip-text">+ $ 750</p>
-</div>
-</li>
-<li className="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-t-inherit text-inherit rounded-xl">
-<div className="flex items-center">
-<button className="leading-pro ease-soft-in text-xs bg-150 w-6.35 h-6.35 p-1.2 rounded-3.5xl tracking-tight-soft bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-lime-500 border-transparent bg-transparent text-center align-middle font-bold uppercase text-red-500 transition-all hover:opacity-75" fdprocessedid="865fo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-exclamation-lg" viewBox="0 0 16 16">
-  <path d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0L7.005 3.1ZM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"/>
-</svg></button>
-<div className="flex flex-col">
-<h6 className="mb-1 leading-normal text-sm text-slate-700">Missed</h6>
-<span className="leading-tight text-xs">26 March 2020, at 13:45 PM</span>
-</div>
-</div>
-<div className="flex flex-col items-center justify-center">
-<p className="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl from-green-600 to-lime-400 text-sm bg-clip-text">+ $ 750</p>
-</div>
-</li>
-<li className="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-t-inherit text-inherit rounded-xl">
-<div className="flex items-center">
-<button className="leading-pro ease-soft-in text-xs bg-150 w-6.35 h-6.35 p-1.2 rounded-3.5xl tracking-tight-soft bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-lime-500 border-transparent bg-transparent text-center align-middle font-bold uppercase text-red-500 transition-all hover:opacity-75" fdprocessedid="865fo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-exclamation-lg" viewBox="0 0 16 16">
-  <path d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0L7.005 3.1ZM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"/>
-</svg></button>
-<div className="flex flex-col">
-<h6 className="mb-1 leading-normal text-sm text-slate-700">Missed</h6>
-<span className="leading-tight text-xs">26 March 2020, at 13:45 PM</span>
-</div>
-</div>
-<div className="flex flex-col items-center justify-center">
-<p className="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl from-green-600 to-lime-400 text-sm bg-clip-text">+ $ 750</p>
-</div>
-</li>
-<li className="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-t-inherit text-inherit rounded-xl">
-<div className="flex items-center">
-<button className="leading-pro ease-soft-in text-xs bg-150 w-6.35 h-6.35 p-1.2 rounded-3.5xl tracking-tight-soft bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-lime-500 border-transparent bg-transparent text-center align-middle font-bold uppercase text-red-500 transition-all hover:opacity-75" fdprocessedid="865fo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-exclamation-lg" viewBox="0 0 16 16">
-  <path d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0L7.005 3.1ZM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"/>
-</svg></button>
-<div className="flex flex-col">
-<h6 className="mb-1 leading-normal text-sm text-slate-700">Missed</h6>
-<span className="leading-tight text-xs">26 March 2020, at 13:45 PM</span>
-</div>
-</div>
-<div className="flex flex-col items-center justify-center">
-<p className="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl from-green-600 to-lime-400 text-sm bg-clip-text">+ $ 750</p>
-</div>
-</li>
-<li className="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-t-inherit text-inherit rounded-xl">
-<div className="flex items-center">
-<button className="leading-pro ease-soft-in text-xs bg-150 w-6.35 h-6.35 p-1.2 rounded-3.5xl tracking-tight-soft bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-lime-500 border-transparent bg-transparent text-center align-middle font-bold uppercase text-red-500 transition-all hover:opacity-75" fdprocessedid="865fo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-exclamation-lg" viewBox="0 0 16 16">
-  <path d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0L7.005 3.1ZM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"/>
-</svg></button>
-<div className="flex flex-col">
-<h6 className="mb-1 leading-normal text-sm text-slate-700">Missed</h6>
-<span className="leading-tight text-xs">26 March 2020, at 13:45 PM</span>
-</div>
-</div>
-<div className="flex flex-col items-center justify-center">
-<p className="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl from-green-600 to-lime-400 text-sm bg-clip-text">+ $ 750</p>
-</div>
-</li>
-<li className="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-t-inherit text-inherit rounded-xl">
-<div className="flex items-center">
-<button className="leading-pro ease-soft-in text-xs bg-150 w-6.35 h-6.35 p-1.2 rounded-3.5xl tracking-tight-soft bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-lime-500 border-transparent bg-transparent text-center align-middle font-bold uppercase text-red-500 transition-all hover:opacity-75" fdprocessedid="865fo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-exclamation-lg" viewBox="0 0 16 16">
-  <path d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0L7.005 3.1ZM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"/>
-</svg></button>
-<div className="flex flex-col">
-<h6 className="mb-1 leading-normal text-sm text-slate-700">Missed</h6>
-<span className="leading-tight text-xs">26 March 2020, at 13:45 PM</span>
-</div>
-</div>
-<div className="flex flex-col items-center justify-center">
-<p className="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl from-green-600 to-lime-400 text-sm bg-clip-text">+ $ 750</p>
-</div>
-</li>
-<li className="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-t-inherit text-inherit rounded-xl">
-<div className="flex items-center">
-<button className="leading-pro ease-soft-in text-xs bg-150 w-6.35 h-6.35 p-1.2 rounded-3.5xl tracking-tight-soft bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-lime-500 border-transparent bg-transparent text-center align-middle font-bold uppercase text-red-500 transition-all hover:opacity-75" fdprocessedid="865fo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-exclamation-lg" viewBox="0 0 16 16">
-  <path d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0L7.005 3.1ZM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"/>
-</svg></button>
-<div className="flex flex-col">
-<h6 className="mb-1 leading-normal text-sm text-slate-700">Missed</h6>
-<span className="leading-tight text-xs">26 March 2020, at 13:45 PM</span>
-</div>
-</div>
-<div className="flex flex-col items-center justify-center">
-<p className="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl from-green-600 to-lime-400 text-sm bg-clip-text">+ $ 750</p>
-</div>
-</li>
-<li className="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-t-inherit text-inherit rounded-xl">
-<div className="flex items-center">
-<button className="leading-pro ease-soft-in text-xs bg-150 w-6.35 h-6.35 p-1.2 rounded-3.5xl tracking-tight-soft bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-lime-500 border-transparent bg-transparent text-center align-middle font-bold uppercase text-red-500 transition-all hover:opacity-75" fdprocessedid="865fo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-exclamation-lg" viewBox="0 0 16 16">
-  <path d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0L7.005 3.1ZM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"/>
-</svg></button>
-<div className="flex flex-col">
-<h6 className="mb-1 leading-normal text-sm text-slate-700">Missed</h6>
-<span className="leading-tight text-xs">26 March 2020, at 13:45 PM</span>
-</div>
-</div>
-<div className="flex flex-col items-center justify-center">
-<p className="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl from-green-600 to-lime-400 text-sm bg-clip-text">+ $ 750</p>
-</div>
-</li>
-<li className="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-t-inherit text-inherit rounded-xl">
-<div className="flex items-center">
-<button className="leading-pro ease-soft-in text-xs bg-150 w-6.35 h-6.35 p-1.2 rounded-3.5xl tracking-tight-soft bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-lime-500 border-transparent bg-transparent text-center align-middle font-bold uppercase text-red-500 transition-all hover:opacity-75" fdprocessedid="865fo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-exclamation-lg" viewBox="0 0 16 16">
-  <path d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0L7.005 3.1ZM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"/>
-</svg></button>
-<div className="flex flex-col">
-<h6 className="mb-1 leading-normal text-sm text-slate-700">Missed</h6>
-<span className="leading-tight text-xs">26 March 2020, at 13:45 PM</span>
-</div>
-</div>
-<div className="flex flex-col items-center justify-center">
-<p className="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl from-green-600 to-lime-400 text-sm bg-clip-text">+ $ 750</p>
-</div>
-</li>
-<li className="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-t-inherit text-inherit rounded-xl">
-<div className="flex items-center">
-<button className="leading-pro ease-soft-in text-xs bg-150 w-6.35 h-6.35 p-1.2 rounded-3.5xl tracking-tight-soft bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-lime-500 border-transparent bg-transparent text-center align-middle font-bold uppercase text-red-500 transition-all hover:opacity-75" fdprocessedid="865fo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-exclamation-lg" viewBox="0 0 16 16">
-  <path d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0L7.005 3.1ZM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"/>
-</svg></button>
-<div className="flex flex-col">
-<h6 className="mb-1 leading-normal text-sm text-slate-700">Missed</h6>
-<span className="leading-tight text-xs">26 March 2020, at 13:45 PM</span>
-</div>
-</div>
-<div className="flex flex-col items-center justify-center">
-<p className="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl from-green-600 to-lime-400 text-sm bg-clip-text">+ $ 750</p>
-</div>
-</li>
-<li className="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-t-inherit text-inherit rounded-xl">
-<div className="flex items-center">
-<button className="leading-pro ease-soft-in text-xs bg-150 w-6.35 h-6.35 p-1.2 rounded-3.5xl tracking-tight-soft bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-lime-500 border-transparent bg-transparent text-center align-middle font-bold uppercase text-red-500 transition-all hover:opacity-75" fdprocessedid="865fo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-exclamation-lg" viewBox="0 0 16 16">
-  <path d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0L7.005 3.1ZM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"/>
-</svg></button>
-<div className="flex flex-col">
-<h6 className="mb-1 leading-normal text-sm text-slate-700">Missed</h6>
-<span className="leading-tight text-xs">26 March 2020, at 13:45 PM</span>
-</div>
-</div>
-<div className="flex flex-col items-center justify-center">
-<p className="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl from-green-600 to-lime-400 text-sm bg-clip-text">+ $ 750</p>
-</div>
-</li>
-<li className="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-t-inherit text-inherit rounded-xl">
-<div className="flex items-center">
-<button className="leading-pro ease-soft-in text-xs bg-150 w-6.35 h-6.35 p-1.2 rounded-3.5xl tracking-tight-soft bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-lime-500 border-transparent bg-transparent text-center align-middle font-bold uppercase text-red-500 transition-all hover:opacity-75" fdprocessedid="865fo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-exclamation-lg" viewBox="0 0 16 16">
-  <path d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0L7.005 3.1ZM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"/>
-</svg></button>
-<div className="flex flex-col">
-<h6 className="mb-1 leading-normal text-sm text-slate-700">Missed</h6>
-<span className="leading-tight text-xs">26 March 2020, at 13:45 PM</span>
-</div>
-</div>
-<div className="flex flex-col items-center justify-center">
-<p className="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl from-green-600 to-lime-400 text-sm bg-clip-text">+ $ 750</p>
-</div>
-</li>
-<li className="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-t-inherit text-inherit rounded-xl">
-<div className="flex items-center">
-<button className="leading-pro ease-soft-in text-xs bg-150 w-6.35 h-6.35 p-1.2 rounded-3.5xl tracking-tight-soft bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-lime-500 border-transparent bg-transparent text-center align-middle font-bold uppercase text-red-500 transition-all hover:opacity-75" fdprocessedid="865fo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-exclamation-lg" viewBox="0 0 16 16">
-  <path d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0L7.005 3.1ZM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"/>
-</svg></button>
-<div className="flex flex-col">
-<h6 className="mb-1 leading-normal text-sm text-slate-700">Missed</h6>
-<span className="leading-tight text-xs">26 March 2020, at 13:45 PM</span>
-</div>
-</div>
-<div className="flex flex-col items-center justify-center">
-<p className="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl from-green-600 to-lime-400 text-sm bg-clip-text">+ $ 750</p>
-</div>
+
 </li>
 
 
 
-</ul> */}
+</ul>
 </div>
 </div>
 </div>
