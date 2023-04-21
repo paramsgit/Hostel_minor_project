@@ -22,6 +22,7 @@
     "moment-timezone": "^0.5.43",
     "mongoose": "^6.9.2",
     "multer": "^1.4.4",
-    "multer-gridfs-storage": "^5.0.2"
+    "multer-gridfs-storage": "^5.0.2",
+    "node-schedule": "^2.1.1"
   }
 }

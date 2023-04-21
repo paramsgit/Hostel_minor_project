@@ -1,6 +1,6 @@
 const express = require('express');
 const multer = require('multer');
-
+const schedule = require('node-schedule');
 const User = require('../models/user');
 const Attend = require('../models/attend');
 const Profile_photo = require('../models/profile_photo');
@@ -13,7 +13,8 @@ const attendance_upload = require("../middleware/attendance_upload");
 const Grid = require("gridfs-stream");
 const mongoose = require("mongoose");
 const connection = require("../db");
-const axios=require('axios')
+const axios=require('axios');
+const attend = require('../models/attend');
 
 // route 1 : to mark the attendance 
 router.post('/attend', fetchuser, attendance_upload.single("file"),async (req,res)=>{
@@ -57,16 +58,24 @@ router.post('/attend', fetchuser, attendance_upload.single("file"),async (req,re
       }
     //   return res.json({message:"It looks like your location is currently outside the campus.",response:false})
     //   else{
+      const rfile=req.file.filename
+      const today = new Date();
+      const startOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      const endOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+
+      const Attendance = await Attend.find({ user: req.user, date: {
+        $gte: startOfDay,
+        $lt: endOfDay
+      } })
+      console.log(Attendance,Attendance.length)
+
+      if(Attendance.length==0){
+
     try {
         // console.log('before room find')
         const room = await Room.find({ user: req.user })
-        // console.log(room)
-        // console.log(req.user)
-        // console.log('after room find')
         const usera = await User.findById(req.user)
-        // console.log(usera)
-        // console.log('after user find')
-        const rfile=req.file.filename
+    
         let temp_photourl=`http://localhost:5000/api/a/newupload/${rfile}`
         let user_photourl=`http://localhost:5000/api/a/newupload/${usera.photo_url}`
         
@@ -92,13 +101,12 @@ router.post('/attend', fetchuser, attendance_upload.single("file"),async (req,re
             
             if( response.data.spoof==0){
               fmessage="[Image seems to Fake Face, Try Again ]"
-            }else{
+            }else if(fresult){
 // need to change
               const markattend = async()=>{
                 try {
                   const usera = await User.findById(req.user)
                   const room = await Room.find({ user: req.user })
-                  const Attendance = await Attend.find({ user: req.user })
                   const newattend= new Attend({
                     user:req.user,name:usera.name,room_no:room[0].room_no,location:`${point.lat}${point.lng}`,status:"Present"
                 })
@@ -117,18 +125,7 @@ router.post('/attend', fetchuser, attendance_upload.single("file"),async (req,re
           });
           
 
-        //   delete temp photo
-        const file = await gfs.files.findOne({ filename:rfile});
-          await gfs.db.collection('photos' + '.chunks').deleteOne({files_id:file._id}, function(err) {
-            if(err){
-                return res.status(400).json(err)
-            }
-         })
-        await gfs.files.deleteOne({_id:file._id},(err,result)=>{
-            if(err){
-                return res.status(400).json(err)
-            }
-        })
+        
 
           res.json({result:fresult,message:fmessage,rfile:rfile,response:true})
           } catch (error) {
@@ -143,14 +140,31 @@ router.post('/attend', fetchuser, attendance_upload.single("file"),async (req,re
         // res.json(mark_attend)
     } catch (error) {
         console.log(error)
-        res.status(500).json({ errors:'server error'})
+        res.status(500).json({ message:'server error'})
     }
+  }
+  else{
+    res.json({result:"undefined",message:"Already Present",rfile:rfile,response:false})
+  }
+    //   delete temp photo
+    const file = await gfs.files.findOne({ filename:rfile});
+    await gfs.db.collection('photos' + '.chunks').deleteOne({files_id:file._id}, function(err) {
+      if(err){
+          return res.status(400).json(err)
+      }
+   })
+  await gfs.files.deleteOne({_id:file._id},(err,result)=>{
+      if(err){
+          return res.status(400).json(err)
+      }
+  })
 
 })
 // router 2 : to get attendance history
 router.get('/attend',fetchuser,async (req,res)=>{
     try {
         const attenhist = await Attend.find({ user: req.user })
+
         res.json({attenhist:attenhist,response:true,message:"Attendance History"})
     } catch (error) {
         console.log(error)
@@ -284,5 +298,91 @@ router.get("/tempupload/:filename", async (req, res) => {
         res.json({error:error});
     }
 });
+
+
+const job = schedule.scheduleJob('14 06 * * *', function(){
+  console.log('Running my function at 8:30am every day');
+ saveattendance()
+
+});
+
+const saveattendance=async()=>{
+   
+  
+  
+const today = new Date();
+const startOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+const endOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+
+let absentAttendanceRecords=[]
+  //selecting absentees 
+const absentees=await User.aggregate([
+  {
+    $lookup: {
+      from: 'attendance',
+      localField: '_id',
+      foreignField: 'user',
+      as: 'attendance'
+    }
+  },
+  {
+    $lookup: {
+      from: 'room',
+      localField: '_id',
+      foreignField: 'user',
+      as: 'room'
+    }
+  },
+  {
+    $match: {
+      $or: [
+        { attendance: { $size: 0 } },
+        { attendance: { $not: { $elemMatch: { date: { $gte: startOfDay, $lt: endOfDay } } } } }
+      ]
+    }
+  },
+  {
+    $project: {
+      password: 0,
+    }
+  }
+], function(err, absenteez) {
+  if (err) {
+    console.log(err);
+  } else {
+ 
+    for (let index = 0; index < absenteez.length; index++) {
+      // console.log(absenteez[index].email ,absenteez[index]._id)
+      if(absenteez[index].room[0]){
+        // console.log(absenteez[index].room[0].room_no)
+        let feed={
+          user:absenteez[index]._id,
+          name:absenteez[index].name,
+          room_no:absenteez[index].room[0].room_no,
+          location:"null",
+          status:"Absent"
+        }
+        absentAttendanceRecords.push(feed)
+
+      }
+      
+    }
+  }
+});
+
+// console.log("absentAttendanceRecords",absentAttendanceRecords)
+
+
+Attend.insertMany(absentAttendanceRecords, function(err, result) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(result);
+  }
+});
+
+// console.log(absentees)
+}
+
 
 module.exports=router

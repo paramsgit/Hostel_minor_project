@@ -52,14 +52,38 @@ export const Attendance = () => {
  if(json.response){
   let atten_length=json.attenhist.length
   if(atten_length){
-  
+    function convertTZ(date, tzString) {
+      return new Date((typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", {timeZone: tzString}));   
+  }
+  attend_data=[]
     for(let i=0;i<atten_length;i++){
+      let attenddate="null",attendtime="null"
+      let out_string=convertTZ(json.attenhist[i].date, "Asia/Kolkata").toString()
+      attenddate=out_string.slice(4,15)
+      attendtime=out_string.slice(16,21)
 
+      attend_data.push(
+      <li className="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-t-inherit text-inherit rounded-xl">
+<div className="flex items-center">
+<button className="leading-pro ease-soft-in text-xs bg-150 w-6.35 h-6.35 p-1.2 rounded-3.5xl tracking-tight-soft bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-lime-500 border-transparent bg-transparent text-center align-middle font-bold uppercase text-lime-500 transition-all hover:opacity-75" fdprocessedid="865fo">
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-check-lg" viewBox="0 0 16 16">
+  <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+</svg>
+  </button>
+<div className="flex flex-col">
+<h6 className="mb-1 leading-normal text-sm text-slate-700">{json.attenhist[i].status}</h6>
+<span className="leading-tight text-xs">{attenddate} at {attendtime}</span>
+</div>
+</div>
+
+</li>
+      )
     }
   }
  }
  else{}
 
+ setattendli(attend_data)
 
    }
 
@@ -353,7 +377,7 @@ const myFile = new File([jpegBlob], 'myFile.jpg', {
 </li>
 </ul> */}
 <ul className="flex flex-col pl-0 mb-0 rounded-lg attul">
-<li className="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-t-inherit text-inherit rounded-xl">
+{/* <li className="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-t-inherit text-inherit rounded-xl">
 <div className="flex items-center">
 <button className="leading-pro ease-soft-in text-xs bg-150 w-6.35 h-6.35 p-1.2 rounded-3.5xl tracking-tight-soft bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-lime-500 border-transparent bg-transparent text-center align-middle font-bold uppercase text-lime-500 transition-all hover:opacity-75" fdprocessedid="865fo">
 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-check-lg" viewBox="0 0 16 16">
@@ -378,8 +402,8 @@ const myFile = new File([jpegBlob], 'myFile.jpg', {
 </div>
 </div>
 
-</li>
-
+</li> */}
+{attendli}
 
 
 </ul>

@@ -2,6 +2,7 @@ require('dotenv').config()
 const connectToMongo = require('./db')
 const express = require('express')
 const multer = require('multer')
+
 connectToMongo();
 const app = express()
 var cors = require('cors');
@@ -27,6 +28,19 @@ app.use('/api/ud',require('./routes/admin_routes/updates'))
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.listen(port, () => {
   console.log(`iNotebook backend listening on port http://localhost:${port}`)
 })
