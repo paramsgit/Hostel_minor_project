@@ -202,16 +202,12 @@ axios.post("http://localhost:5000/api/a/newupload", formData, {headers: {
    <>
   
 
-   {/* <button className="colbtn" onClick={event => handleClick(event,`${parseInt(number)}` )}>col</button> */}
+   <button className="colbtn" onClick={event => HandleClick(event,`${parseInt(number)}` )}>col</button>
 
   
       <div id="sideid" className={`kaguya relly max-w-62.5 ease-nav-brand z-990 fixed inset-y-0 my-4 ml-4 block w-full -translate-x-full flex-wrap items-center justify-between rounded-2xl border-0 bg-white p-0 antialiased shadow-none transition-transform duration-200 xl:left-0 xl:translate-x-0 xl:bg-transparent translate-x-0 shadow-soft-xl bckol ps2 ${state.value?'flex':'displaynone'}`} style={{position:"relative"}}>
         <div className="h-19.5">
-          <i
-            className="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden"
-            sidenav-close=""
-            aria-hidden="true"
-          ></i>
+        
           <Link 
             className="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700"
             to='#'
@@ -380,6 +376,8 @@ axios.post("http://localhost:5000/api/a/newupload", formData, {headers: {
      
     </div>
 
+
+                
 
     <div className="modal fade" id="user_profile" data-bs-backdrop="static" data-bs-keyboard="false"  tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div className="modal-dialog modal-lg modal-dialog-centered">

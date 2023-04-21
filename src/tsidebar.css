@@ -144,7 +144,12 @@
     background-color: #a8bbbf;
     
   }
-
+.scrollcs{
+    overflow:hidden;
+}
+.scrollcs:hover{
+    overflow: auto!important;
+}
 
   #announceslist{
     /* max-height: 138px;
@@ -154,8 +159,10 @@
     flex-direction: column; */
   }
   .relly{
-    position: relative;
+    position: sticky;
     left: 0;
+    max-height: 100vh;
+    margin-top: 0!important;
   }
   .thirdbloon{
     width: 100%;
@@ -544,6 +551,11 @@ padding: 2px;
     background-color: white!important;
     left: 0!important;
     margin-left: 0!important;
+  
+   }
+   .relly{
+      position: fixed!important;
+      height: 100vh;
    }
     
   }

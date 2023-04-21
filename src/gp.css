@@ -10,7 +10,10 @@
 .bckk2{
     background-image: url('./components/static/gate.jpg');
 }
-
+.likadiv{
+    justify-content: space-between;
+    width: 100%;
+}
 .mbb5{
   margin-bottom: 5px;  
 }
