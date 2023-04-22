@@ -9,7 +9,7 @@ export const Temp = () => {
     const [messg,setmessg]=useState()
     const navigate = useNavigate();
     useEffect(() => {
-     console.log(`${state.port}`)
+     console.log(`${state.backend}`)
       if(localStorage.getItem('token')){
         if(localStorage.getItem('room_no')){
          

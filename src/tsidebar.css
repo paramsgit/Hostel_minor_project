@@ -572,6 +572,10 @@ padding: 2px;
    .hamdiv{
     display: flex!important;
    }
+   .fmdiv{
+    width: 100vw!important;
+    padding: 10px;
+   }
    .firstinhome{
     margin-left: 0;
     margin-right: 0;
@@ -580,12 +584,18 @@ padding: 2px;
    .relly{
       position: fixed!important;
       height: 100vh;
+      margin-left: 0!important;
    }
    .one{
     margin-left: 0;
     margin-right: 0;
    }
-    
+   .leftp,.rightp{
+width: 100%;
+   }
+    .mbody{
+        flex-direction: column;
+    }
   }
 .vecdiv{
     width: 60px;

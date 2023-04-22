@@ -9,8 +9,9 @@ const initialState = {
     user_mobile:"9876543210",
     user_email:"user@example.com",
     user_photo_url:"vec2.jpg",
-    backend:"localhost",
+    backend:"192.168.1.51",
     port:"5000"
+    
   };
   function reducer(state, action) {
     switch (action.type) {
