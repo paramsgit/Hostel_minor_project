@@ -23,15 +23,24 @@ let number=0;
 export const HandleClick = (event, param) => {
 
   let ele=document.getElementById('sideid')
+  let hb1=document.getElementById('hb1')
+  let hb2=document.getElementById('hb2')
+  let hb3=document.getElementById('hb3')
   if(number)
  { number=0;
 
 ele.classList.add('collapsi')
 ele.classList.add('kaguya')
+hb1.classList.remove('bar-topr')
+hb2.classList.remove('bar-middler')
+hb3.classList.remove('bar-bottomr')
 }
   else{ number =1;
     ele.classList.remove('collapsi')
     ele.classList.remove('kaguya')
+    hb1.classList.add('bar-topr')
+hb2.classList.add('bar-middler')
+hb3.classList.add('bar-bottomr')
   }
   console.log(number)
  
@@ -209,11 +218,11 @@ axios.post("http://localhost:5000/api/a/newupload", formData, {headers: {
    <>
   
     <div className="hamdiv">
-   <button className={`colbtn ${crossp==1?"crossplate":"shockplate"}`} onClick={anotherclick}>
+   <button id="hambutton" className={`colbtn `} onClick={anotherclick}>
 
-   <div className={`bar-top ${crossp==0?"crossplate":"bar-topr"}`}></div>
-  <div className={`bar-middle ${crossp==0?"crossplate":"bar-middler"}`}></div>
-  <div className={`bar-bottom ${crossp==0?"crossplate":"bar-bottomr"}`}></div>
+   <div id="hb1" className={`bar-top`}></div>
+  <div id="hb2" className={`bar-middle `}></div>
+  <div id="hb3" className={`bar-bottom `}></div>
    </button>
    </div>
   

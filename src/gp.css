@@ -192,7 +192,8 @@ z-index: 2000;
 }
 @media(max-width:600px){
     .threegp{
-        width: 90vw;
+        width: 100vw;
+        justify-content: center;
     }
     .tw2{
         width: 100%;

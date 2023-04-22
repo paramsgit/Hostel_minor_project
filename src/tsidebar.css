@@ -541,6 +541,9 @@ padding: 2px;
         margin: 5px;
         width: 98%;
     }
+    .wrapping{
+        flex-direction: column;
+    }
     .panjwta,.chewta{
         width: 98%!important;
     }
@@ -563,7 +566,7 @@ padding: 2px;
     margin-left: 0!important;
   
    }
-   .one{
+   .firstinhome{
     margin-left: 0;
     margin-right: 0;
     justify-content: center;
@@ -571,6 +574,10 @@ padding: 2px;
    .relly{
       position: fixed!important;
       height: 100vh;
+   }
+   .one{
+    margin-left: 0;
+    margin-right: 0;
    }
     
   }
@@ -604,6 +611,7 @@ padding: 2px;
     justify-content: flex-end;
     position: fixed;
     width: 100%;
+    z-index: 100;
 }
  .bar-topr {
   transform: rotate(45deg);

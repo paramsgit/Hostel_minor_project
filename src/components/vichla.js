@@ -261,7 +261,7 @@ Good Bye!
 <h5 className="pt-2 mb-6 font-bold text-white">Gate Pass</h5>
 <div id='' className='flex dsp'>
 <button className=" btn btn-outline-success text-white bg-green-700 focus:ring-green-300 focus:ring-2 hover:bg-green-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700" data-bs-toggle="modal" data-bs-target="#exampleModal2" onClick={mind}>Apply New</button>
-<button className=" btn btn-outline-success text-white focus:ring-green-300 focus:ring-2 hover:bg-green-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700" data-bs-toggle="modal" data-bs-target="#exampleModal3" >History</button>
+<button className=" btn btn-outline-success text-white focus:ring-green-300 focus:ring-2 hover:bg-green-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700" >History</button>
 
 {/* <button type="button" className="btn btn-success text-white text-sm bg-green-700" >
   Apply New
@@ -282,7 +282,7 @@ Good Bye!
 </div>
    </div>
    
-  <div className="one two fourth justify-content-center">
+  <div className="one two fourth justify-content-center calcby">
 
     
   <div className='relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border h100 p-4'>

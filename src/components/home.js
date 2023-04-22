@@ -152,7 +152,7 @@ const rangto=(e)=>{
 <div id='roombookalert' className="p-4 mt-5 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 " role="alert" style={{display:"none"}}>
   <span className="font-medium"></span> Welcome {sname}, Your room Booking is Pending
 </div>
-    <div className="one two">
+    <div className="one two firstinhome">
       
    <div className="flex flex-wrap mt-6 -mx-3 billoone" style={{width:"100%"}} >
 <div className="w-half px-3 mb-6 lg:mb-0 lg:flex-none ww50" >
