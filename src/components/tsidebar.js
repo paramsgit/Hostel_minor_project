@@ -191,7 +191,7 @@ const formData = new FormData();
 formData.append('file', file)
 
 
-axios.post("http://localhost:5000/api/a/newupload", formData, {headers: {
+axios.post(`http://${state.backend}:${state.port}/api/a/newupload`, formData, {headers: {
   'auth-token': localStorage.getItem('token')
   }})
 .then(res => { 

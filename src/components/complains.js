@@ -35,7 +35,7 @@ export const Complains = () => {
      }
 
     const getallcomps=async (e)=>{
-        const response=await fetch("http://localhost:5000/api/c/newcomplain",{
+        const response=await fetch(`http://${state.backend}:${state.port}/api/c/newcomplain`,{
             method:'get',
             headers:{
                 'Content-Type':'application/json',
@@ -126,7 +126,7 @@ export const Complains = () => {
 
        }
        else{
-        const response=await fetch("http://localhost:5000/api/c/newcomplain",{
+        const response=await fetch(`http://${state.backend}:${state.port}/api/c/newcomplain`,{
           method:'POST',
           headers:{
               'Content-Type':'application/json',
@@ -171,7 +171,7 @@ export const Complains = () => {
  const solvedreq=async(e)=>{
   console.log(e.target.id)
 
-  const response=await fetch("http://localhost:5000/api/c/newcomplain",{
+  const response=await fetch(`http://${state.backend}:${state.port}/api/c/newcomplain`,{
     method:'PATCH',
     headers:{
         'Content-Type':'application/json',
@@ -196,7 +196,7 @@ if(json.response){
   const dide=e.target.id
   let delid=dide.slice(1,)
   document.getElementById(`delclose${delid}`).click()
-  const response=await fetch("http://localhost:5000/api/c/newcomplain",{
+  const response=await fetch(`http://${state.backend}:${state.port}/api/c/newcomplain`,{
     method:'DELETE',
     headers:{
         'Content-Type':'application/json',

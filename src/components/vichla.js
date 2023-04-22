@@ -52,7 +52,7 @@ const mind=async (e,a)=>{
     setdivgreen(0)
     setdivred(0)
     e.preventDefault();
-    const response=await fetch("http://localhost:5000/api/g/fetchlasttoken",{
+    const response=await fetch(`http://${state.backend}:${state.port}/api/g/fetchlasttoken`,{
         method:'get',
         headers:{
             'Content-Type':'application/json',
@@ -106,7 +106,7 @@ const handle=async (e)=>{
    let It=`${idate}T${itime}`
    console.log(It)
     e.preventDefault();
-    const response=await fetch("http://localhost:5000/api/g/gatetoken",{
+    const response=await fetch(`http://${state.backend}:${state.port}/api/g/gatetoken`,{
         method:'POST',
         headers:{
             'Content-Type':'application/json',
@@ -124,7 +124,7 @@ const handle=async (e)=>{
     }
 }
 const newdownload2=async (e)=>{
-    const response=await fetch("http://localhost:5000/api/g/fetchlasttoken",{
+    const response=await fetch(`http://${state.backend}:${state.port}/api/g/fetchlasttoken`,{
         method:'get',
         headers:{
             'Content-Type':'application/json',
@@ -171,7 +171,7 @@ const reloadhistory=async(e)=>{
 }
 
 const gethistory=async (e)=>{
-    const response=await fetch("http://localhost:5000/api/g/gatetoken",{
+    const response=await fetch(`http://${state.backend}:${state.port}/api/g/gatetoken`,{
         method:'get',
         headers:{
             'Content-Type':'application/json',

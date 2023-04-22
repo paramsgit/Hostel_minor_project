@@ -23,7 +23,7 @@ export const Adminsignin = () => {
     let iemail=document.getElementById('email').value
     let ipassword=document.getElementById('password').value
     e.preventDefault();
-    const response=await fetch("http://localhost:5000/api/admin_auth/adminlogin",{
+    const response=await fetch(`http://${state.backend}:${state.port}/api/admin_auth/adminlogin`,{
         method:'POST',
         headers:{
             'Content-Type':'application/json'

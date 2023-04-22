@@ -4,7 +4,7 @@ const Room = require('../../models/room')
 const bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 const {body,validationResult} = require('express-validator') //this is for the validation
-const JWT_SECRET = 'Harryisagoodb$oy';
+const JWT_SECRET = 'Th!siskeyfor@dm1s';
 const router = express.Router()
 const fetchadmin = require('../../middleware/fetchadmin')
 

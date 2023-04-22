@@ -7,6 +7,26 @@
 .threegp{
     width: 80vw;
 }
+.feedtitle{
+    display: flex;
+    justify-content: center;
+}
+.feedbackform{
+    background-color: white;
+    padding: 30px;
+    max-width: 550px;
+    width: 100%;
+    border-radius: 17px;
+}
+.feedsub{
+ 
+}
+.fmdiv{
+    width: calc(98vw - 250px);
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+}
 .bckk2{
     background-image: url('./components/static/gate.jpg');
 }

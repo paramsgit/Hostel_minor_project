@@ -1,7 +1,7 @@
 var jwt = require('jsonwebtoken');
 const Admin = require('../models/admins');
 const Room = require("../models/room");
-const JWT_SECRET = 'Harryisagoodb$oy';
+const JWT_SECRET = 'Th!siskeyfor@dm1s';
 
 const fetchadmin = async(req, res, next) => {
     // const token = req.cookies.tid;
