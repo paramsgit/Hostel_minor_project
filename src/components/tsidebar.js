@@ -19,7 +19,7 @@ import CrisisAlertRoundedIcon from '@mui/icons-material/CrisisAlertRounded';
 import { height } from "@mui/system";
 import axios from 'axios'
 
-let number=1;
+let number=0;
 export const HandleClick = (event, param) => {
 
   let ele=document.getElementById('sideid')
@@ -65,8 +65,15 @@ export const NODisableli=(e)=>{
 
 export const Tsidebar = () => {
   const [isact,setact]=useState(1);
+  const [crossp,setcrossp]=useState(0);
   const { state, dispatch } = useContext(noteContext);
 
+
+  const anotherclick=()=>{
+    setcrossp((crossp+1)%2)
+
+    HandleClick()
+  }
   const navigate = useNavigate();
   const logout=async ()=>{
     localStorage.removeItem('token')
@@ -201,9 +208,14 @@ axios.post("http://localhost:5000/api/a/newupload", formData, {headers: {
   return (
    <>
   
+    <div className="hamdiv">
+   <button className={`colbtn ${crossp==1?"crossplate":"shockplate"}`} onClick={anotherclick}>
 
-   <button className="colbtn" onClick={event => HandleClick(event,`${parseInt(number)}` )}>col</button>
-
+   <div className={`bar-top ${crossp==0?"crossplate":"bar-topr"}`}></div>
+  <div className={`bar-middle ${crossp==0?"crossplate":"bar-middler"}`}></div>
+  <div className={`bar-bottom ${crossp==0?"crossplate":"bar-bottomr"}`}></div>
+   </button>
+   </div>
   
       <div id="sideid" className={`kaguya relly max-w-62.5 ease-nav-brand z-990 fixed inset-y-0 my-4 ml-4 block w-full -translate-x-full flex-wrap items-center justify-between rounded-2xl border-0 bg-white p-0 antialiased shadow-none transition-transform duration-200 xl:left-0 xl:translate-x-0 xl:bg-transparent translate-x-0 shadow-soft-xl bckol ps2 ${state.value?'flex':'displaynone'}`} style={{position:"relative"}}>
         <div className="h-19.5">
