@@ -29,8 +29,7 @@ import {Adminsidebar} from './components/adminsidebar'
 import {Temp} from './components/temp'
 import {Complains} from './components/complains'
 import {Attendance} from './components/attendance'
-import {Scanner} from './components/scanner'
-import {Side} from './components/sidebar'
+
 import { Tsidebar } from './components/tsidebar';
 import {HandleClick} from './components/tsidebar'
 import NoteState from './context/noteState'
@@ -85,7 +84,7 @@ if(admintoken){
       <Routes>
      
       <Route exact path="/" element={<Home/>}/>
-      <Route exact path="/scan" element={<Scanner/>}/>
+      
       <Route exact path="/home" element={<Home/>}/>
       <Route exact path="/vichla" element={<Vichla/>}/>
       <Route exact path="/complains" element={<Complains/>}/>
