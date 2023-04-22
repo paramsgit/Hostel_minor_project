@@ -569,6 +569,9 @@ padding: 2px;
     margin-left: 0!important;
   
    }
+   .hamdiv{
+    display: flex!important;
+   }
    .firstinhome{
     margin-left: 0;
     margin-right: 0;
@@ -610,12 +613,13 @@ padding: 2px;
     /* transition: all 1s ease-in-out; */
 }
 .hamdiv{
-    display: flex;
+    display: none;
     justify-content: flex-end;
     position: fixed;
     width: 100%;
     z-index: 100;
 }
+
  .bar-topr {
   transform: rotate(45deg);
 }

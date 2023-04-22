@@ -1,5 +1,6 @@
-import React,{ useState,useEffect } from 'react'
+import React,{ useState,useEffect,useContext } from 'react'
 import { useNavigate } from "react-router-dom";
+import noteContext from '../context/noteContext'
 import downloadjs from 'downloadjs';
 import html2canvas from 'html2canvas';
 import qrcode from "qrcode";
@@ -14,6 +15,7 @@ export const Vichla = () => {
     if(localStorage.getItem('token')){
         if(localStorage.getItem('room_no')){
             reloadhistory()
+            dothis()
         }
         else{
           navigate("/home")
@@ -30,7 +32,7 @@ export const Vichla = () => {
     const [otit, setotit] = useState("");
     const [tr, settr] = useState();
     const [loaderdownload, setloaderdownload] = useState(0);
-    
+    const { state, dispatch } = useContext(noteContext);
     
     // for gtoken
     const [gname, setgname] = useState("");
@@ -41,6 +43,10 @@ export const Vichla = () => {
     const [gtoken, setgtoken] = useState("");
     const [qrimage, setqrimage] = useState();
     // preventing claender and getting last token status
+    function dothis(){
+        dispatch({ type: 'UPDATE_VALUE', payload: true });
+        dispatch({ type: 'UPDATE_AVALUE', payload: false });
+       }
 const mind=async (e,a)=>{
     
     setdivgreen(0)

@@ -1,4 +1,5 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect,useContext } from 'react'
+import noteContext from '../context/noteContext'
 import { useNavigate } from "react-router-dom";
 import { Dismiss } from 'flowbite';
 import axios from 'axios'
@@ -13,6 +14,7 @@ export const Attendance = () => {
     console.log("useeffect")
     if(localStorage.getItem('token')){
       if(localStorage.getItem('room_no')){
+        dothis()
         let newd=new Date();
         let dto=""
         dto=dto+newd;
@@ -35,6 +37,12 @@ export const Attendance = () => {
   const [longitude, setlongitude] =useState(0);
   const [rmessage, setrmessage] =useState("Start camera and capture");
   const [datetoday,setdatetoday]=useState();
+  const { state, dispatch } = useContext(noteContext);
+  function dothis(){
+    dispatch({ type: 'UPDATE_VALUE', payload: true });
+    dispatch({ type: 'UPDATE_AVALUE', payload: false });
+   }
+
   let attend_data=[]
   const [attendli,setattendli]=useState()
 

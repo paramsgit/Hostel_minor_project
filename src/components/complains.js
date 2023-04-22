@@ -1,4 +1,5 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect,useContext } from 'react'
+import noteContext from '../context/noteContext'
 import { useNavigate } from "react-router-dom";
 import { Dismiss } from 'flowbite';
 let varia=1
@@ -11,6 +12,7 @@ export const Complains = () => {
     if(localStorage.getItem('token')){
       if(localStorage.getItem('room_no')){
         getallcomps()
+        dothis()
       }
       else{
         navigate("/home")
@@ -25,7 +27,12 @@ export const Complains = () => {
     let bodykadata=[]
     const [submitresponse,setsubmitresponse]=useState("")
     const [newds,setnewds]=useState()
-   
+    const { state, dispatch } = useContext(noteContext);
+
+    function dothis(){
+      dispatch({ type: 'UPDATE_VALUE', payload: true });
+      dispatch({ type: 'UPDATE_AVALUE', payload: false });
+     }
 
     const getallcomps=async (e)=>{
         const response=await fetch("http://localhost:5000/api/c/newcomplain",{
