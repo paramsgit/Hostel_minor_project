@@ -1,22 +1,13 @@
-import React, { useState,useEffect,useContext } from "react";
+import React, { useState,useContext } from "react";
 import noteContext from '../context/noteContext'
 
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  useNavigate
-} from "react-router-dom";
+import { Link,useNavigate} from "react-router-dom";
 import plogo from './static/purplelogo.png';
-import vec2 from './static/vec2.jpg';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import QrCodeRoundedIcon from '@mui/icons-material/QrCodeRounded';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import AssignmentRoundedIcon from '@mui/icons-material/AssignmentRounded';
 import MoveToInboxRoundedIcon from '@mui/icons-material/MoveToInboxRounded';
 import CrisisAlertRoundedIcon from '@mui/icons-material/CrisisAlertRounded';
-import { height } from "@mui/system";
 import axios from 'axios'
 
 let number=0;
@@ -98,7 +89,7 @@ export const Tsidebar = () => {
     document.getElementById('sloader2').style.opacity=1
     const video = document.getElementById('cvideo')
     var vwidth = video.offsetWidth;
-    var vheight = video. offsetHeight;
+    var vheight = video.offsetHeight;
     let front=false
     function startVideo() {
         console.log("cvstarted")
@@ -235,8 +226,8 @@ axios.post(`http://${state.backend}:${state.port}/api/a/newupload`, formData, {h
           >
             <img  
               src={plogo}
-              className="inline h-full max-w-full transition-all duration-200 ease-nav-brand max-h-8"/>
-            <span className="ml-1 font-semibold transition-all duration-200 ease-nav-brand">
+              className="inline h-full max-w-full transition-all duration-200 ease-nav-brand max-h-8" alt="logo"/>
+            <span className="ml-1 font-semibold transition-all duration-200 ease-nav-brand" >
              Hostel Dashboard
              <button onClick={Vmodalopen}>
              </button>

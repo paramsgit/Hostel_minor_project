@@ -10,27 +10,12 @@ import ArrowRightRoundedIcon from '@mui/icons-material/ArrowRightRounded';
 export const Vichla = () => {
 
     const navigate = useNavigate();
-    useEffect(() => {
-    console.log("useeffect")
-    if(localStorage.getItem('token')){
-        if(localStorage.getItem('room_no')){
-            reloadhistory()
-            dothis()
-        }
-        else{
-          navigate("/home")
-        }
-    }
-    else{
-      
-      navigate("/signin")
-    }
-  },[]);
+  
     const [divstatus, setdivstatus] = useState(1);
     const [divgreen, setdivgreen] = useState(0);
     const [divred, setdivred] = useState(0);
     const [otit, setotit] = useState("");
-    const [tr, settr] = useState();
+    
     const [loaderdownload, setloaderdownload] = useState(0);
     const { state, dispatch } = useContext(noteContext);
     
@@ -168,6 +153,7 @@ const reloadhistory=async(e)=>{
     elly.style.transform = `rotate(${rott}deg)`;
     rott=rott+360
     const tempv= await gethistory();
+    console.log(typeof(tempv))
 }
 
 const gethistory=async (e)=>{
@@ -225,6 +211,23 @@ const gethistory=async (e)=>{
         
     }
 }
+
+useEffect(() => {
+    console.log("useeffect")
+    if(localStorage.getItem('token')){
+        if(localStorage.getItem('room_no')){
+            reloadhistory()
+            dothis()
+        }
+        else{
+          navigate("/home")
+        }
+    }
+    else{
+      
+      navigate("/signin")
+    }
+  },[]);
 
   return (
     <>
