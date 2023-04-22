@@ -229,6 +229,7 @@
 
  .attone{
   width: 80vw;
+ 
  }
  .att{
   display: flex;
@@ -360,6 +361,9 @@ background: linear-gradient(180deg, rgba(247,248,249,1) 0%, rgba(244,3,133,1) 6%
 
 
  @media (max-width:700px) {
+  .attone{
+    margin-top: 80px;
+  }
   .signinbox{
     width: 100vw;
     }

@@ -217,3 +217,12 @@ z-index: 2000;
         align-items: center;
     }
 }
+@media(max-width:500px){
+    .signinbox{
+       padding: 0;
+    }
+   .sectonexdiv {
+        padding: 10px;
+    margin-top: 50px;
+    }
+}

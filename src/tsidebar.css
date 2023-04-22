@@ -23,7 +23,7 @@
 .bar-middle,
 .bar-bottom {
   height: 5px;
-  background: rgb(184, 4, 4);
+  background: #13141661;
   border-radius: 5px;
   margin: 6px 0;
   transform-origin: left;
@@ -49,6 +49,9 @@
     
         font-family: 'Poppins';
         color: #595959;
+}
+.fourth{
+    margin-top: 80px!important;
 }
 .one{
     margin: 20px;

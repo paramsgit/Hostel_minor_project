@@ -217,7 +217,7 @@ axios.post("http://localhost:5000/api/a/newupload", formData, {headers: {
   return (
    <>
   
-    <div className="hamdiv">
+    <div className={`hamdiv ${state.value?'flex':'displaynone'}`}>
    <button id="hambutton" className={`colbtn `} onClick={anotherclick}>
 
    <div id="hb1" className={`bar-top`}></div>
