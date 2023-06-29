@@ -2,6 +2,7 @@
   "name": "dash",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://sbsbsv.github.io",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
@@ -15,6 +16,7 @@
     "bootstrap": "^5.2.3",
     "downloadjs": "^1.4.7",
     "flowbite": "^1.6.5",
+    "gh-pages": "^5.0.0",
     "html2canvas": "^1.4.1",
     "html5-qrcode": "^2.3.7",
     "interweave": "^13.0.0",
@@ -32,7 +34,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
