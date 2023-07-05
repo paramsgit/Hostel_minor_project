@@ -27,7 +27,7 @@ The Modern Hostel Management System is a comprehensive application designed to f
 ![Mess](./src/GithubImages/mess1.png)
 
 ### QR-Based Gate Pass Token
-- Students can generate a gate pass token using a QR code.
+- Students have to fill leave form and can download their gate pass .
 - The gate pass token will be scanned by security personnel at the gate for verification.
 
 ![Gate_Pass](./src/GithubImages/git4.png)
@@ -42,7 +42,7 @@ The Modern Hostel Management System is a comprehensive application designed to f
 
 ![Attendance](./src/GithubImages/att.png)
 
-### Complaint Section and Status
+### Complaint Section
 - Students can submit complaints or issues they encounter within the hostel.
 - They can track the status of their complaints and receive updates.
 
@@ -64,11 +64,11 @@ The Modern Hostel Management System is a comprehensive application designed to f
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/modern-hostel-management-system.git
+git clone https://github.com/paramsgit/Hostel_minor_project.git
 ```
 2. Install the necessary dependencies:
 ```bash
-cd modern-hostel-management-system
+cd Hostel_minor_project
 npm install
 ```
 3. Start the server
