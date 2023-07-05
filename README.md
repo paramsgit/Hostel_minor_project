@@ -2,6 +2,8 @@
 
 The Modern Hostel Management System is a comprehensive application designed to facilitate the management and operations of a hostel. It offers various features such as registration/sign-in, room booking, QR-based gate pass token, attendance with face and location verification, complaint section, feedback section, and an admin dashboard.
 
+## 
+
 ![Dashboard](./src/GithubImages/git1.png)
 
 #
