@@ -38,7 +38,7 @@ router.post('/createuser',[
             id:user.id
     }
     const jwtData = jwt.sign(data, JWT_SECRET)
-    res.json({jwtData,message:`${req.body.name} your account is almost done`})}}
+    res.json({message:`Account created Successfully`,response:true})}}
     catch(error){
         console.log(error.message)
         res.status(500).json({message:"Some error oocured",response:false})
