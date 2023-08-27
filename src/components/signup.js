@@ -16,6 +16,39 @@ export const Signup = () => {
   
 });
 
+const handlesubmit =async (e)=>{
+    let alertt = document.getElementById('loginalert')
+    alertt.style.display='none'
+
+    const email=email_input
+    const name=name_input
+    const password=password_input
+    const mobile=mobile_input
+    
+    e.preventDefault();
+    const response=await fetch(`http://${state.backend}:${state.port}/api/auth/createuser`,{
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify({email:email,password:password,mobile:mobile,name:name})
+
+
+    });
+    const json=await response.json();
+    console.log(json)
+    if(json.response){
+       
+        setalertstate('success')
+        alertt.innerHTML=json.message
+        alertt.style.display='block'
+    }else{
+        
+        alertt.innerHTML=json.message
+        alertt.style.display='block'
+        setalertstate('danger')
+    }
+}
 // const handlesubmit =async (e)=>{
 //     let alertt = document.getElementById('loginalert')
 //     alertt.style.display='none'
