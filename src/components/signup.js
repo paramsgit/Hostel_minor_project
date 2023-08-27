@@ -19,15 +19,11 @@ export const Signup = () => {
 });
 
 const handlesubmit =async (e)=>{
-    let alertt = document.getElementById('loginalert')
-    // alertt.style.display='none'
     setalertdisplay('displaynone')
-
     const email=email_input
     const name=name_input
     const password=password_input
     const mobile=mobile_input
-    
     e.preventDefault();
     const response=await fetch(`http://${state.backend}:${state.port}/api/auth/createuser`,{
         method:'POST',
@@ -35,60 +31,18 @@ const handlesubmit =async (e)=>{
             'Content-Type':'application/json'
         },
         body: JSON.stringify({email:email,password:password,mobile:mobile,name:name})
-
-
-    });
+});
     const json=await response.json();
-    console.log(json)
     if(json.response){
-       
         setalertstate('success')
         setalertText(json.message)
         setalertdisplay("")
-        // alertt.innerHTML=json.message
-        // alertt.style.display='block'
     }else{
         setalertstate('danger')
         setalertText(json.message)
         setalertdisplay("")
-        // alertt.innerHTML=json.message
-        // alertt.style.display='block'
-        // setalertstate('danger')
     }
 }
-// const handlesubmit =async (e)=>{
-//     let alertt = document.getElementById('loginalert')
-//     alertt.style.display='none'
-//     const email=document.getElementById('email').value
-//     const name=document.getElementById('name').value
-//     const password=document.getElementById('password').value
-//     const mobile=document.getElementById('mobile').value
-//     console.log(name,email,password,mobile)
-//     e.preventDefault();
-//     const response=await fetch(`http://${state.backend}:${state.port}/api/auth/createuser`,{
-//         method:'POST',
-//         headers:{
-//             'Content-Type':'application/json'
-//         },
-//         body: JSON.stringify({email:email,password:password,mobile:mobile,name:name})
-
-
-//     });
-//     const json=await response.json();
-//     console.log(json)
-//     if(json.response){
-       
-//         setalertstate('success')
-//         alertt.innerHTML=json.message
-//         alertt.style.display='block'
-//     }else{
-        
-//         alertt.innerHTML=json.message
-//         alertt.style.display='block'
-//         setalertstate('danger')
-//     }
-// }
-
 
 
   return (
