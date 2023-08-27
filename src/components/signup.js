@@ -4,9 +4,14 @@ import noteContext from '../context/noteContext'
 export const Signup = () => {
     const { state, dispatch } = useContext(noteContext);
     const [alertstate, setalertstate] = useState("secondary");
+    const [email_input, setemail_input] = useState("");
+    const [name_input, setname_input] = useState("");
+    const [password_input, setpassword_input] = useState("");
+    const [mobile_input, setmobile_input] = useState("");
+
   const navigate = useNavigate();
   useEffect(() => {
-  console.log("useeffect")
+  
   if(localStorage.getItem('token')){navigate("/home")}
   
 });
@@ -43,6 +48,8 @@ const handlesubmit =async (e)=>{
         setalertstate('danger')
     }
 }
+
+
 
   return (
    <>
