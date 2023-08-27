@@ -4,6 +4,8 @@ import noteContext from '../context/noteContext'
 export const Signup = () => {
     const { state, dispatch } = useContext(noteContext);
     const [alertstate, setalertstate] = useState("secondary");
+    const [alertdisplay, setalertdisplay] = useState("displaynone");
+    const [alertText, setalertText] = useState("secondary");
     const [email_input, setemail_input] = useState("");
     const [name_input, setname_input] = useState("");
     const [password_input, setpassword_input] = useState("");
@@ -18,7 +20,8 @@ export const Signup = () => {
 
 const handlesubmit =async (e)=>{
     let alertt = document.getElementById('loginalert')
-    alertt.style.display='none'
+    // alertt.style.display='none'
+    setalertdisplay('displaynone')
 
     const email=email_input
     const name=name_input
@@ -40,13 +43,17 @@ const handlesubmit =async (e)=>{
     if(json.response){
        
         setalertstate('success')
-        alertt.innerHTML=json.message
-        alertt.style.display='block'
+        setalertText(json.message)
+        setalertdisplay("")
+        // alertt.innerHTML=json.message
+        // alertt.style.display='block'
     }else{
-        
-        alertt.innerHTML=json.message
-        alertt.style.display='block'
         setalertstate('danger')
+        setalertText(json.message)
+        setalertdisplay("")
+        // alertt.innerHTML=json.message
+        // alertt.style.display='block'
+        // setalertstate('danger')
     }
 }
 // const handlesubmit =async (e)=>{
@@ -99,8 +106,8 @@ const handlesubmit =async (e)=>{
                   Create and account
               </h1>
 
-              <div className={`alert alert-${alertstate}`} id='loginalert' style={{ outline:'none',border:'none',borderRadius:'10px',display:'none'}} role="alert">
-                
+              <div className={`${alertdisplay} alert alert-${alertstate}`} id='loginalert' style={{ outline:'none',border:'none',borderRadius:'10px',}} role="alert">
+                {alertText}
                 </div>
 
               <form className="space-y-4 md:space-y-6" action="#">
