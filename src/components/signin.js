@@ -29,8 +29,8 @@ export const Signin = (props) => {
 //   function for login
   const handle=async (e)=>{
     localStorage.clear()
-    let iemail=document.getElementById('email').value
-    let ipassword=document.getElementById('password').value
+    let iemail=email_input
+    let ipassword=password_input
     // let iemail=document.getElementById('email').value
     // let ipassword=document.getElementById('password').value
     e.preventDefault();
