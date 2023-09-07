@@ -30,6 +30,7 @@ export const Signin = (props) => {
 
 //   function for login
   const handle=async (e)=>{
+    setalertdisplay('displaynone')
     localStorage.clear()
     let iemail=email_input
     let ipassword=password_input
@@ -78,8 +79,8 @@ export const Signin = (props) => {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                   Sign in to your account
               </h1>
-              <div className={`alert alert-${alertstate}`} id='loginalert' style={{ outline:'none',border:'none',borderRadius:'10px',display:'none'}} role="alert">
-                
+              <div className={`${alertdisplay} alert alert-${alertstate}`} id='loginalert' style={{ outline:'none',border:'none',borderRadius:'10px'}} role="alert">
+              {alertText}
                       </div>
               <form className="space-y-4 md:space-y-6" onSubmit={handle}>
                   <div>
