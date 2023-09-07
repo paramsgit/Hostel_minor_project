@@ -249,7 +249,7 @@ Read More
 </div>
 </div>
    </div>
-   <div className="one" id='roombookpaytm' style={{display:"none"}}>
+   <div className={`one ${roombook_grid}`} id='roombookpaytm' >
    <div className="flex flex-wrap mt-6 -mx-3 billoone">
 <div className="w-half px-3 mb-6 lg:mb-0 lg:flex-none ww50">
 <div className="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
