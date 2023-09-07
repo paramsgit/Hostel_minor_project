@@ -6,6 +6,8 @@ export const Signin = (props) => {
     const { state, dispatch } = useContext(noteContext);
     const [count, setCount] = useState(0);
     const [alertstate, setalertstate] = useState("secondary");
+    const [alertdisplay, setalertdisplay] = useState("displaynone");
+    const [alertText, setalertText] = useState("secondary");
     const [email_input, setemail_input] = useState("");
     const [password_input, setpassword_input] = useState("");
 
@@ -31,8 +33,6 @@ export const Signin = (props) => {
     localStorage.clear()
     let iemail=email_input
     let ipassword=password_input
-    // let iemail=document.getElementById('email').value
-    // let ipassword=document.getElementById('password').value
     e.preventDefault();
     const response=await fetch(`http://${state.backend}:${state.port}/api/auth/login`,{
         method:'POST',
@@ -48,18 +48,18 @@ export const Signin = (props) => {
     if(json.response){
         localStorage.setItem('token',json.jwtData)
         dispatch({ type: 'UPDATE_VALUE', payload: true });
-        let alertt = document.getElementById('loginalert')
+
         setalertstate('success')
-        alertt.innerHTML=json.message
-        alertt.style.display='block'
+        setalertText(json.message)
+        setalertdisplay("")
         
         navigate("/home")
     }else{
         console.log("false")
-        let alertt = document.getElementById('loginalert')
-        alertt.innerHTML=json.message
-        alertt.style.display='block'
+       
         setalertstate('danger')
+        setalertText(json.message)
+        setalertdisplay("")
 
     }
 }
