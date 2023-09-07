@@ -69,8 +69,6 @@ dispatch({ type: 'UPDATE_room', payload: json.room_no });
 dispatch({ type: 'UPDATE_photo_url', payload: `http://${state.backend}:${state.port}/api/a/newupload/${json.user.photo_url}` });
 NODisableli()
 }else{
-  // document.getElementById('roombookalert').style.display='block'
-  // document.getElementById('roombookpaytm').style.display='block'
   setroombook_alert("")
   setroombook_grid("")
   Disableli()
@@ -100,13 +98,10 @@ for(let i=0;i<json.length;i++){
 
 }
 
-const rangto=(e)=>{
-
-}
 
   const handle=async (e)=>{
    
-    let roomno=document.getElementById('password').value
+    let roomno={sroom}
     e.preventDefault();
     const response=await fetch(`http://${state.backend}:${state.port}/api/b/bookroom`,{
         method:'POST',
