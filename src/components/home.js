@@ -22,6 +22,8 @@ export const Home = () => {
   const [sroom,setsroom]=useState()
   const [sfloor,setfloor]=useState("Ground")
   const [sname,setsname]=useState()
+  const [roombook_alert,setroombook_alert]=useState("displaynone")
+  const [roombook_grid,setroombook_grid]=useState("displaynone")
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -67,8 +69,10 @@ dispatch({ type: 'UPDATE_room', payload: json.room_no });
 dispatch({ type: 'UPDATE_photo_url', payload: `http://${state.backend}:${state.port}/api/a/newupload/${json.user.photo_url}` });
 NODisableli()
 }else{
-  document.getElementById('roombookalert').style.display='block'
-  document.getElementById('roombookpaytm').style.display='block'
+  // document.getElementById('roombookalert').style.display='block'
+  // document.getElementById('roombookpaytm').style.display='block'
+  setroombook_alert("")
+  setroombook_grid("")
   Disableli()
 }
 
@@ -149,7 +153,7 @@ const rangto=(e)=>{
    
   return (
    <>
-<div id='roombookalert' className="p-4 mt-5 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 " role="alert" style={{display:"none"}}>
+<div id='roombookalert' className={`${roombook_alert} p-4 mt-5 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 `} role="alert" >
   <span className="font-medium"></span> Welcome {sname}, Your room Booking is Pending
 </div>
     <div className="one two firstinhome">
