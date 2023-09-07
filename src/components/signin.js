@@ -13,15 +13,12 @@ export const Signin = (props) => {
 
     const navigate = useNavigate();
     useEffect(() => {
-    console.log("useeffect")
     if(localStorage.getItem('token')){
-        
         navigate("/home")}
     else{
         dispatch({ type: 'UPDATE_NAME', payload: "User" });
         dispatch({ type: 'UPDATE_room', payload: 0 });
         dispatch({ type: 'UPDATE_photo_url', payload: `vec2.jpg` });
- 
         dispatch({ type: 'UPDATE_VALUE', payload: false });
         dispatch({ type: 'UPDATE_AVALUE', payload: false });
         setCount(100);
@@ -45,19 +42,14 @@ export const Signin = (props) => {
 
     });
     const json=await response.json();
-    console.log(json)
     if(json.response){
         localStorage.setItem('token',json.jwtData)
         dispatch({ type: 'UPDATE_VALUE', payload: true });
-
         setalertstate('success')
         setalertText(json.message)
         setalertdisplay("")
-        
         navigate("/home")
     }else{
-        console.log("false")
-       
         setalertstate('danger')
         setalertText(json.message)
         setalertdisplay("")
